@@ -14,10 +14,10 @@ prix assurance
     private final int _id_vehicule;
     private final String type;
     private final String nom_assurance;
-    private final float prix_assurance;
+    private final double prix_assurance;
 
 
-    public Assurance(int _id, int _id_vehicule, String type, String nom_assurance, float prix_assurance) {
+    public Assurance(int _id, int _id_vehicule, String type, String nom_assurance, double prix_assurance) {
         this._id = _id;
         this._id_vehicule = _id_vehicule;
         this.type = type;

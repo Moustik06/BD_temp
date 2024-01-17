@@ -26,9 +26,9 @@ public class Location extends BaseEntity{
     private final String date_fin;
     private final int _id_parkingRecup;
     private final int _id_parkingRendu;
-    private final float prix_ttc;
+    private final double prix_ttc;
 
-    public Location(int _id, int _id_client, int _id_vehicule, int _id_agence, int _id_employe, String date_debut, String date_fin, int _id_parkingRecup, int _id_parkingRendu, float prix_ttc) {
+    public Location(int _id, int _id_client, int _id_vehicule, int _id_agence, int _id_employe, String date_debut, String date_fin, int _id_parkingRecup, int _id_parkingRendu, double prix_ttc) {
         this._id = _id;
         this._id_client = _id_client;
         this._id_vehicule = _id_vehicule;

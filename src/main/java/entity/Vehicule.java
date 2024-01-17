@@ -18,11 +18,11 @@ public class Vehicule extends BaseEntity{
     private final int _id_agence;
     private final String marque;
     private final String modele;
-    private final float prix;
-    private final float caution;
+    private final double prix;
+    private final double caution;
     private final String plaque_imat;
 
-    public Vehicule(int _id, int _id_agence, String marque, String modele, float prix, float caution, String plaque_imat) {
+    public Vehicule(int _id, int _id_agence, String marque, String modele, double prix, double caution, String plaque_imat) {
         this._id = _id;
         this._id_agence = _id_agence;
         this.marque = marque;
