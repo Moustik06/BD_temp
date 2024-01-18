@@ -1,37 +1,48 @@
-import entity.*;
 import entityDAO.AgenceDAO;
 import entityDAO.BaseDAO;
-import org.bson.BsonArray;
 import org.bson.Document;
-import org.bson.json.JsonMode;
-import org.bson.json.JsonReader;
 import reader.Reader;
-
-import javax.print.Doc;
-import java.io.Console;
-import java.io.FileNotFoundException;
-import java.util.Arrays;
-import java.util.Date;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
 
 public class main {
     public static void main(String[] args) {
         Document[] agences = new Document[1000];
+        Document[] assurances = new Document[1000];
+        Document[] clients = new Document[1000];
+        Document[] employes = new Document[1000];
+        Document[] factures = new Document[1000];
+        Document[] locations = new Document[1000];
+        Document[] parkings = new Document[100];
+        Document[] vehicules = new Document[1000];
+
         Reader reader = new Reader();
         agences = reader.agenceReader();
+        assurances = reader.assuranceReader();
+        clients = reader.clientReader();
+        employes = reader.employerReader();
+        factures = reader.factureReader();
+        locations = reader.locationReader();
+        parkings = reader.parkingReader();
+        vehicules = reader.vehiculeReader();
+
+
+        /*Sert de base pour l'instant, plus tard on doit faire des requètes plus dur qui seront écrire dans la class
+        * associé a la table mais vu que pour l'instant c'est simple on peut tout faire d'un coup
+        */
 
         AgenceDAO agenceDAO = new AgenceDAO();
-        Document updatedDocument = new Document();
-        updatedDocument.append("nom", "Agence 1");
-        updatedDocument.append("adresse", "1 rue de la paix");
-        updatedDocument.append("telephone", "0783732492");
 
-        agenceDAO.update(3, updatedDocument);
-        System.out.println("closing connection");
+        for (int i = 0; i < 1000; i++) {
+            agenceDAO.insert(agences[i], CollectionNames.AGENCE.getName());
+            agenceDAO.insert(assurances[i], CollectionNames.ASSURANCE.getName());
+            agenceDAO.insert(clients[i], CollectionNames.CLIENT.getName());
+            agenceDAO.insert(employes[i], CollectionNames.EMPLOYE.getName());
+            agenceDAO.insert(factures[i], CollectionNames.FACTURE.getName());
+            agenceDAO.insert(locations[i], CollectionNames.LOCATION.getName());
+            agenceDAO.insert(vehicules[i], CollectionNames.VEHICULE.getName());
+        }
+        for (int i = 0; i < 100; i++) {
+            agenceDAO.insert(parkings[i], CollectionNames.PARKING.getName());
+        }
         BaseDAO.closeConnection();
     }
 }
