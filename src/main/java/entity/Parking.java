@@ -4,14 +4,6 @@ import org.bson.Document;
 
 public class Parking extends BaseEntity{
 
-    /*
-    _id
-    id vehicule
-    id agence
-    nb place
-    nb dispo
-     */
-
     private final int _id;
     private final int _idVehicule;
     private final int _idAgence;
