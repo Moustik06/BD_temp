@@ -2,8 +2,11 @@ import entityDAO.*;
 import org.bson.Document;
 import reader.Reader;
 
+import java.util.ArrayList;
+
 public class main {
     public static void main(String[] args) {
+        /*
         Document[] agences = new Document[1000];
         Document[] assurances = new Document[1000];
         Document[] clients = new Document[1000];
@@ -22,9 +25,10 @@ public class main {
         locations = reader.locationReader();
         parkings = reader.parkingReader();
         vehicules = reader.vehiculeReader();
+        */
 
-
-        /*Sert de base pour l'instant, plus tard on doit faire des requètes plus dur qui seront écrire dans la class
+        /*
+        * Sert de base pour l'instant, plus tard on doit faire des requètes plus dur qui seront écrire dans la class
         * associé a la table mais vu que pour l'instant c'est simple on peut tout faire d'un coup
         */
 
@@ -37,9 +41,9 @@ public class main {
         ParkingDAO parkingDAO = new ParkingDAO();
         VehiculeDAO vehiculeDAO = new VehiculeDAO();
 
-
-        BaseDAO.dropDatabase("projet-BD");
+        /*
         for (int i = 0; i < 1000; i++) {
+
             agenceDAO.insert(agences[i], CollectionNames.AGENCE.getName());
             agenceDAO.insert(assurances[i], CollectionNames.ASSURANCE.getName());
             agenceDAO.insert(clients[i], CollectionNames.CLIENT.getName());
@@ -59,6 +63,16 @@ public class main {
         locationDAO.createIndexes();
         parkingDAO.createIndexes();
         vehiculeDAO.createIndexes();
+
+        agenceDAO.createIndexes();
+        */
+        Document searchCriteriaAgence = new Document("marque", "Mazda");
+        ArrayList<Document> docs = vehiculeDAO.findByCriteria(searchCriteriaAgence);
+        for (Document doc : docs) {
+            System.out.println(doc.toJson());
+        }
+
+
         BaseDAO.closeConnection();
     }
 }

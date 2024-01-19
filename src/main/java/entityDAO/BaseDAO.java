@@ -1,11 +1,13 @@
 package entityDAO;
 
 import com.mongodb.MongoClient;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public abstract class BaseDAO {
@@ -29,10 +31,8 @@ public abstract class BaseDAO {
     }
     public void insert(Document doc,String collectionName) {
         MongoCollection<Document> collection = getDatabase().getCollection(collectionName);
-
         try {
             collection.insertOne(doc);
-            System.out.println("insérée avec succès !");
         } catch (Exception e) {
             System.err.println("Erreur lors de l'insertion : " + e.getMessage());
         }
@@ -66,7 +66,17 @@ public abstract class BaseDAO {
          */
         getDatabase().getCollection(collectionName).updateOne(new Document("_id", id), new Document("$set", updatedFields));
     }
+    public ArrayList<Document> getDocuments(Document criteria, MongoCollection<Document> collection) {
+        FindIterable<Document> result = collection.find(criteria);
+        Iterator<Document> it = result.iterator();
+        ArrayList<Document> documents = new ArrayList<>();
+        while (it.hasNext()) {
+            documents.add(it.next());
+        }
+        return documents;
+    }
     public abstract void createIndexes();
+    public abstract ArrayList<Document> findByCriteria(Document criteria);
 
 
 

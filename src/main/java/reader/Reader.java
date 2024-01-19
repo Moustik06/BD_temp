@@ -308,7 +308,7 @@ public class Reader {
                 reader.readEndDocument();
 
                 // Create a Vehicule object and convert it to a Document
-                Vehicule vehicule = new Vehicule(idInt, idAgenceInt, marque, modele, prixDouble, cautionDouble, plaqueImat);
+                Vehicule vehicule = new Vehicule(idInt, idAgenceInt, marqueString, modeleString, prixDouble, cautionDouble, plaqueImatString);
                 vehiculeDocuments[i] = vehicule.generateDocument();
             }
 
