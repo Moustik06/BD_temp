@@ -1,3 +1,4 @@
+package entityDAO;
 public enum CollectionNames {
     AGENCE("agences"),
     ASSURANCE("assurances"),

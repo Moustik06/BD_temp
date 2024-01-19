@@ -32,20 +32,31 @@ public abstract class BaseDAO {
 
         try {
             collection.insertOne(doc);
-            System.out.println("Agence insérée avec succès !");
+            System.out.println("insérée avec succès !");
         } catch (Exception e) {
-            System.err.println("Erreur lors de l'insertion de l'agence : " + e.getMessage());
+            System.err.println("Erreur lors de l'insertion : " + e.getMessage());
         }
     }
     // Insérer un objet dans la base de données
     public Document find(int id, String collectionName) {
-        // Utilisez votre connexion à la base de données pour récupérer l'agence par ID
-        // Assurez-vous de gérer le cas où l'objet n'est pas trouvé (retournez null ou lancez une exception)
         return getDatabase().getCollection(collectionName).find(new Document("_id", id)).first();
+    }
+
+    public ArrayList<Document> findAll(String collectionName) {
+        ArrayList<Document> documents = new ArrayList<>();
+        getDatabase().getCollection(collectionName).find().into(documents);
+        return documents;
     }
     public void delete(int id, String collectionName) {
         // Utilisez votre connexion à la base de données pour supprimer l'agence par ID
         getDatabase().getCollection(collectionName).deleteOne(new Document("_id", id));
+    }
+    public void dropCollection(String collectionName) {
+        getDatabase().getCollection(collectionName).drop();
+    }
+
+    public static void dropDatabase(String collectionName) {
+        getDatabase().drop();
     }
     public void update(int id, Document updatedFields, String collectionName) {
         // Utilisez votre connexion à la base de données pour mettre à jour l'agence par ID
@@ -55,6 +66,7 @@ public abstract class BaseDAO {
          */
         getDatabase().getCollection(collectionName).updateOne(new Document("_id", id), new Document("$set", updatedFields));
     }
+    public abstract void createIndexes();
 
 
 

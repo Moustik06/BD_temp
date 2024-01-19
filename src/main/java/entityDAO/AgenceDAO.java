@@ -1,17 +1,15 @@
 package entityDAO;
 
-import entity.Agence;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.IndexOptions;
 import org.bson.Document;
-
-import java.util.ArrayList;
 
 public class AgenceDAO extends BaseDAO {
 
-    private static final String COLLECTION_NAME = "agences";
 
-
-
-
-
+    @Override
+    public void createIndexes() {
+        MongoCollection<Document> collection = getDatabase().getCollection(CollectionNames.AGENCE.getName());
+        collection.createIndex(new Document("nom", 1));
+    }
 }

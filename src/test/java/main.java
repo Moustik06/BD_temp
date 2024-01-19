@@ -1,5 +1,4 @@
-import entityDAO.AgenceDAO;
-import entityDAO.BaseDAO;
+import entityDAO.*;
 import org.bson.Document;
 import reader.Reader;
 
@@ -30,7 +29,16 @@ public class main {
         */
 
         AgenceDAO agenceDAO = new AgenceDAO();
+        AssuranceDAO assuranceDAO = new AssuranceDAO();
+        ClientDAO clientDAO = new ClientDAO();
+        EmployerDAO employeDAO = new EmployerDAO();
+        FactureDAO factureDAO = new FactureDAO();
+        LocationDAO locationDAO = new LocationDAO();
+        ParkingDAO parkingDAO = new ParkingDAO();
+        VehiculeDAO vehiculeDAO = new VehiculeDAO();
 
+
+        BaseDAO.dropDatabase("projet-BD");
         for (int i = 0; i < 1000; i++) {
             agenceDAO.insert(agences[i], CollectionNames.AGENCE.getName());
             agenceDAO.insert(assurances[i], CollectionNames.ASSURANCE.getName());
@@ -43,6 +51,14 @@ public class main {
         for (int i = 0; i < 100; i++) {
             agenceDAO.insert(parkings[i], CollectionNames.PARKING.getName());
         }
+        agenceDAO.createIndexes();
+        assuranceDAO.createIndexes();
+        clientDAO.createIndexes();
+        employeDAO.createIndexes();
+        factureDAO.createIndexes();
+        locationDAO.createIndexes();
+        parkingDAO.createIndexes();
+        vehiculeDAO.createIndexes();
         BaseDAO.closeConnection();
     }
 }
