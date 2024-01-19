@@ -6,7 +6,6 @@ import com.mongodb.client.model.IndexOptions;
 import org.bson.Document;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class ClientDAO extends BaseDAO {
 

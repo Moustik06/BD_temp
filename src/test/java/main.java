@@ -3,6 +3,7 @@ import org.bson.Document;
 import reader.Reader;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class main {
     public static void main(String[] args) {
@@ -66,10 +67,9 @@ public class main {
 
         agenceDAO.createIndexes();
         */
-        Document searchCriteriaAgence = new Document("marque", "Mazda");
-        ArrayList<Document> docs = vehiculeDAO.findByCriteria(searchCriteriaAgence);
-        for (Document doc : docs) {
-            System.out.println(doc.toJson());
+        ArrayList<Document> doc = agenceDAO.sortAgencesByNom();
+        for (Document d : doc) {
+            System.out.println(d.toJson());
         }
 
 

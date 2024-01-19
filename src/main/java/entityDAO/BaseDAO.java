@@ -1,13 +1,18 @@
 package entityDAO;
 
 import com.mongodb.MongoClient;
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Aggregates;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 
 public abstract class BaseDAO {
@@ -77,6 +82,17 @@ public abstract class BaseDAO {
     }
     public abstract void createIndexes();
     public abstract ArrayList<Document> findByCriteria(Document criteria);
+    // Méthode pour effectuer une jointure entre collections
+public ArrayList<Document> getDocuments(List<Bson> pipeline, String collectionName) {
+        MongoCollection<Document> collection = getDatabase().getCollection(collectionName);
+        AggregateIterable<Document> result = collection.aggregate(pipeline);
+        Iterator<Document> it = result.iterator();
+        ArrayList<Document> documents = new ArrayList<>();
+        while (it.hasNext()) {
+            documents.add(it.next());
+        }
+        return documents;
+    }
 
 
 
