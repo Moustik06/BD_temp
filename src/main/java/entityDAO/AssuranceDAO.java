@@ -10,7 +10,6 @@ import java.util.Iterator;
 
 public class AssuranceDAO extends BaseDAO {
 
-
     @Override
     public void createIndexes() {
         MongoCollection<Document> collection = getDatabase().getCollection(CollectionNames.ASSURANCE.getName());

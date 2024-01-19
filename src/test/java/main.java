@@ -1,9 +1,12 @@
+import com.mongodb.client.MongoCollection;
 import entityDAO.*;
 import org.bson.Document;
 import reader.Reader;
 
+import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class main {
     public static void main(String[] args) {
@@ -67,12 +70,20 @@ public class main {
 
         agenceDAO.createIndexes();
         */
-        ArrayList<Document> doc = agenceDAO.sortAgencesByNom();
-        for (Document d : doc) {
-            System.out.println(d.toJson());
-        }
 
+
+
+
+        //faits moi le test de la fonction findAgencesByNombreEmployes
+        // Appel de la méthode pour trouver le chef d'une agence
+
+        ArrayList<Document> agences = agenceDAO.findAgencePlusChiffreAffaires();
+        for (Document agence : agences) {
+            System.out.println(agence);
+        }
 
         BaseDAO.closeConnection();
     }
+
+
 }
