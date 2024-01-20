@@ -22,4 +22,7 @@ public class AssuranceDAO extends BaseDAO {
         MongoCollection<Document> collection = getDatabase().getCollection(CollectionNames.ASSURANCE.getName());
         return getDocuments(criteria, collection);
     }
+
+
+
 }

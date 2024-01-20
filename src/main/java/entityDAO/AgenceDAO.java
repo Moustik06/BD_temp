@@ -131,15 +131,6 @@ public class AgenceDAO extends BaseDAO {
         return getDocuments(pipeline, CollectionNames.AGENCE.getName());
     }
 
-
-
-
-
-
-
-
-    //a vérifier ce qui suit
-
     // Méthode pour trouver l'agence avec le plus de véhicules
     public ArrayList<Document> findAgencePlusVehicules() {
         // Définir le pipeline d'agrégation
@@ -164,11 +155,11 @@ public class AgenceDAO extends BaseDAO {
                 // Étape 5 : Limiter les résultats à un seul document (l'agence avec le plus grand nombre de véhicules)
                 Aggregates.limit(1)
         );
-
         // Exécuter la requête d'agrégation et retourner le résultat
         return getDocuments(pipeline, CollectionNames.AGENCE.getName());
     }
 
+    //verifier si c'est bon
     // Méthode pour trouver l'agence avec le plus gros chiffre d'affaires
     public ArrayList<Document> findAgencePlusChiffreAffaires() {
         // Définir le pipeline d'agrégation
@@ -178,21 +169,21 @@ public class AgenceDAO extends BaseDAO {
                 Aggregates.lookup(
                         CollectionNames.LOCATION.getName(),
                         "_id",
-                        "_id_agence",
+                        "id_agence",
                         "locations"
                 ),
                 // Étape 2 : Aplatir le tableau "locations" résultant de la jointure
                 Aggregates.unwind("$locations"),
-                // Étape 3 : Effectuer une jointure avec la collection "Facture" sur le champ "_idLocation"
+                // Étape 3 : Effectuer une jointure avec la collection "Facture" sur le champ "_id_location"
                 Aggregates.lookup(
                         CollectionNames.FACTURE.getName(),
                         "locations._id",
-                        "_idLocation",
+                        "idLocation",
                         "factures"
                 ),
                 // Étape 4 : Aplatir le tableau "factures" résultant de la jointure
                 Aggregates.unwind("$factures"),
-                // Étape 5 : Grouper les documents par id_agence et calculer le chiffre d'affaires
+                // Étape 5 : Grouper les documents par "_id" et calculer le chiffre d'affaires total
                 Aggregates.group(
                         "$_id",
                         Accumulators.sum("chiffreAffaires", "$factures.totalTTC")
@@ -201,6 +192,7 @@ public class AgenceDAO extends BaseDAO {
                 Aggregates.sort(Sorts.descending("chiffreAffaires")),
                 // Étape 7 : Limiter les résultats à un seul document (l'agence avec le plus gros chiffre d'affaires)
                 Aggregates.limit(1)
+
         );
 
         // Exécuter la requête d'agrégation et retourner le résultat
