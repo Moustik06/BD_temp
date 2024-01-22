@@ -4,6 +4,8 @@ import reader.Reader;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class main {
     public static void main(String[] args) {
@@ -67,9 +69,9 @@ public class main {
 
         agenceDAO.createIndexes();
         */
-        ArrayList<Document> doc = agenceDAO.sortAgencesByNom();
-        for (Document d : doc) {
-            System.out.println(d.toJson());
+        ArrayList<Document> documents = agenceDAO.findAgencePlusChiffreAffaires();
+        for (Document document : documents) {
+            System.out.println(document.toJson());
         }
 
 
