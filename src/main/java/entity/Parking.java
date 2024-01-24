@@ -27,4 +27,6 @@ public class Parking extends BaseEntity{
                 .append("nbPlace", this.nombrePlace)
                 .append("nbDispo", this.nombrePlaceDispo);
     }
+
+
 }

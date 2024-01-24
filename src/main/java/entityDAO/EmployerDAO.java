@@ -86,7 +86,6 @@ public class EmployerDAO extends BaseDAO {
         return getDocuments(pipeline, CollectionNames.EMPLOYE.getName());
     }
 
-
     // Méthode pour obtenir la liste des chefs de toutes les agences et affiche nom prenom et nmo agence
     public ArrayList<Document> chefsAgences() {
         List<Bson> pipeline = Arrays.asList(
@@ -175,6 +174,7 @@ public class EmployerDAO extends BaseDAO {
                         "employerDetails"
                 ),
                 // Étape 2 : Grouper les documents par _id et calculer la moyenne des locations
+
                 Aggregates.group("$_id", Accumulators.avg("moyenneLocations", 1)),
                 // Étape 3 : Effectuer une jointure avec la collection "Agence" sur le champ "id_agence"
                 Aggregates.lookup(
