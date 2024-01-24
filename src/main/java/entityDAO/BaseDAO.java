@@ -42,6 +42,7 @@ public abstract class BaseDAO {
             System.err.println("Erreur lors de l'insertion : " + e.getMessage());
         }
     }
+
     // Insérer un objet dans la base de données
     public Document find(int id, String collectionName) {
         return getDatabase().getCollection(collectionName).find(new Document("_id", id)).first();
@@ -83,7 +84,7 @@ public abstract class BaseDAO {
     public abstract void createIndexes();
     public abstract ArrayList<Document> findByCriteria(Document criteria);
     // Méthode pour effectuer une jointure entre collections
-public ArrayList<Document> getDocuments(List<Bson> pipeline, String collectionName) {
+    public ArrayList<Document> getDocuments(List<Bson> pipeline, String collectionName) {
         MongoCollection<Document> collection = getDatabase().getCollection(collectionName);
         AggregateIterable<Document> result = collection.aggregate(pipeline);
         Iterator<Document> it = result.iterator();
