@@ -73,10 +73,45 @@ public class main {
 
         agenceDAO.createIndexes();
         */
+
+        /*
         ArrayList<Document> doc = locationDAO.findLocationsByBrandDesc();
         for (Document d : doc) {
             System.out.println(d.toJson());
         }
+
+        //vehiculesParAgence
+        ArrayList<Document> doc = vehiculeDAO.vehiculesParAgence(2);
+        for (Document d : doc) {
+            System.out.println(d.toJson());
+        }
+
+        //vehiculesParMarqueAvecDetails
+        ArrayList<Document> doc = vehiculeDAO.vehiculesParMarqueAvecDetails("Audi");
+        for (Document d : doc) {
+            System.out.println(d.toJson());
+        }
+
+        //modelePlusLoue couiic couiccc elle aussi
+        ArrayList<Document> doc = vehiculeDAO.modelePlusLoue();
+        for (Document d : doc) {
+            System.out.println(d.toJson());
+        }
+
+        //marqueModelePlusLoues a revoir ca marche pas
+        ArrayList<Document> doc = vehiculeDAO.marqueModelePlusLoues();
+        for (Document d : doc) {
+            System.out.println(d.toJson());
+        }
+        */
+
+        //vehiculesParPlaqueAvecDetails
+        ArrayList<Document> doc = vehiculeDAO.vehiculesParPlaqueAvecDetails("WAUJFAFH7BN867243");
+        for (Document d : doc) {
+            System.out.println(d.toJson());
+        }
+
+
         BaseDAO.closeConnection();
     }
 }
