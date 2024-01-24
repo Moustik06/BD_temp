@@ -72,6 +72,8 @@ public class main {
 
         agenceDAO.createIndexes();
         */
+
+        /*
         ArrayList<Document> doc = agenceDAO.sortAgencesByNom();
         for (Document d : doc) {
             System.out.println(d.toJson());
@@ -85,6 +87,68 @@ public class main {
             System.out.println(agence);
         }
 
+
+        ArrayList<Document> totalMontantTTC = factureDAO.totalMontantTTCParAgence(1);
+        for (Document result : totalMontantTTC) {
+            System.out.println(result);
+        }
+
+
+        ArrayList<Document> facturesImpayees = factureDAO.findFacturesImpayeesParAgence(8);
+        for (Document result : facturesImpayees) {
+            System.out.println(result);
+        }
+
+        //montantTotalFacturesParClient
+        ArrayList<Document> montantTotalFacturesParClient = factureDAO.montantTotalFacturesParClient();
+        for (Document result : montantTotalFacturesParClient) {
+            System.out.println(result);
+        }
+
+        //factures pour un client donné
+        ArrayList<Document> facturesParClient = factureDAO.facturesParClient(31 );
+        for (Document result : facturesParClient) {
+            System.out.println(result);
+        }
+
+
+        //findFactureLaPlusGrosseParDate
+        ArrayList<Document> factureLaPlusGrosseParDate = factureDAO.findFactureLaPlusGrosseParDate("1/2/2024");
+        for (Document result : factureLaPlusGrosseParDate) {
+            System.out.println(result);
+        }
+
+        //detailsEmployeParAgence
+        ArrayList<Document> detailsEmployeParAgence = employeDAO.detailsEmployeParAgence(1);
+        for (Document result : detailsEmployeParAgence) {
+            System.out.println(result);
+        }
+
+
+        //employesParAgence
+        ArrayList<Document> employesParAgence = employeDAO.employesParAgence(1);
+        for (Document result : employesParAgence) {
+            System.out.println(result);
+        }
+
+
+        //chefsAgences
+        ArrayList<Document> chefsAgences = employeDAO.chefsAgences();
+        for (Document result : chefsAgences) {
+            System.out.println(result);
+        }
+
+        //employesPlusLocationsVendues
+        ArrayList<Document> employesPlusLocationsVendues = employeDAO.employesPlusLocationsVendues();
+        for (Document result : employesPlusLocationsVendues) {
+            System.out.println(result);
+        }*/
+
+        //moyenneLocationsEmployeParAgence
+        ArrayList<Document> moyenneLocationsEmployeParAgence = employeDAO.moyenneLocationsEmployeParAgence();
+        for (Document result : moyenneLocationsEmployeParAgence) {
+            System.out.println(result);
+        }
         BaseDAO.closeConnection();
     }
 }
