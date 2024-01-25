@@ -106,7 +106,7 @@ public class main {
         */
 
         //vehiculesParPlaqueAvecDetails
-        ArrayList<Document> doc = vehiculeDAO.vehiculesParPlaqueAvecDetails("WAUJFAFH7BN867243");
+        ArrayList<Document> doc = vehiculeDAO.modelePlusLoue();
         for (Document d : doc) {
             System.out.println(d.toJson());
         }
