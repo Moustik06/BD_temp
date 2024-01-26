@@ -105,12 +105,6 @@ public class main {
         }
         */
 
-        //vehiculesParPlaqueAvecDetails
-        ArrayList<Document> doc = vehiculeDAO.modelePlusLoue();
-        for (Document d : doc) {
-            System.out.println(d.toJson());
-        }
-
 
         BaseDAO.closeConnection();
     }
