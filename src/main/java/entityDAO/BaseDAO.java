@@ -20,6 +20,8 @@ public abstract class BaseDAO {
     private static final MongoDatabase database;
 
     static {
+        // voir ici pour avoir duplication
+
         // Initialisation de la connexion MongoDB
         mongoClient = new MongoClient("localhost", 27017);
         database = mongoClient.getDatabase("projet-BD");
